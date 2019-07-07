@@ -10,13 +10,14 @@ namespace WebApplication1.Models.ViewModels
     {
         [Display(Name = "流水號")] public int SM { get; set; }
 
-        [Display(Name = "類別")] public int Category { get; set; }
+        [Display(Name = "類別")] public string Category { get; set; }
 
-        [Display(Name = "日期")] public DateTime Day { get; set; }
+        [Display(Name = "日期")]
+        public DateTime Day { get; set; }
 
-        [Display(Name = "金額")] public Double Description { get; set; }
+        [Display(Name = "金額")] public string Amount { get; set; }
 
-        [Display(Name = "備註")] public string Contents { get; set; }
+        [Display(Name = "備註")] public string Remarks { get; set; }
     }
 
     public class SpendingListViewModels

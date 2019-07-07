@@ -2,32 +2,51 @@
 
 @{
     ViewBag.Title = "Index";
-
+    int rowIndex = 1;
 }
 
-<h2>Index</h2>
+<h2>記帳本</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 
-@Html.Action("CreateAction",Model.spending)
 
-<table class="table">
-    <tr>
-        <th></th>
-    </tr>
-    
-    
+@Html.Action("CreateAction", Model.spending)
 
-    @foreach (var item in Model.SpendingList) {
-    <tr>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>#</th>
+                <th>類別</th>
+                <th>日期</th>
+                <th>金額</th>
+            </tr>
 
-</table>
+            @foreach (var item in Model.SpendingList.OrderBy(x=>x.Day))
+            {
+                <tr>
+                    <td>
+                        @rowIndex
+                    </td>
+                    <td>
+                        @item.Category
+                    </td>
+                    <td>
+                        @item.Day.ToString("yyyy-MM-dd")
+                    </td>
+                    <td>
+                        @item.Amount
+                    </td>
+                    @*<td>
+                            @item.Remarks
+                        </td>*@
+                    @*@<td>
+                                    Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */
+                            </td>})*@
+                </tr>
+                rowIndex++;
+            }
+        </table>
+    </div>
+</div>
