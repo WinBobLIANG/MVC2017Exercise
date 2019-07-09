@@ -34,16 +34,8 @@
                         @item.Day.ToString("yyyy-MM-dd")
                     </td>
                     <td>
-                        @item.Amount
+                        @item.Amount.ToString("N0")
                     </td>
-                    @*<td>
-                            @item.Remarks
-                        </td>*@
-                    @*@<td>
-                                    Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */
-                            </td>})*@
                 </tr>
                 rowIndex++;
             }

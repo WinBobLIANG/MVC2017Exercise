@@ -19,7 +19,7 @@ namespace WebApplication1.Controllers
             };
 
             SpendingViewModels tempspending = new SpendingViewModels();
-            DateTime dateTimeMin = Convert.ToDateTime("2019-1-1");
+            DateTime dateTimeMin = new DateTime(2019,01,01);
             Random rnd = new Random();
             List<SelectListItem> mySelectItemList = new List<SelectListItem>();
             mySelectItemList.AddRange(new[]{
@@ -35,7 +35,7 @@ namespace WebApplication1.Controllers
                 tempCategory = rnd.Next(2).ToString();
                 tempspending.Category= mySelectItemList.Where(x=>x.Value== tempCategory).SingleOrDefault().Text ;
                 tempspending.Day= dateTimeMin.AddDays(rnd.Next(365));
-                tempspending.Amount = rnd.Next(2000).ToString("N0");
+                tempspending.Amount = rnd.Next(2000);
                 models.SpendingList.Add(tempspending);
             }
             return View(models);
