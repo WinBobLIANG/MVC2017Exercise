@@ -1,5 +1,5 @@
 ﻿@model WebApplication1.Models.ViewModels.SpendingListViewModels
-
+@using WebApplication1.Helper @*自己要增加來源*@
 @{
     ViewBag.Title = "Index";
     int rowIndex = 1;
@@ -21,14 +21,14 @@
                 <th>金額</th>
             </tr>
 
-            @foreach (var item in Model.SpendingList.OrderBy(x=>x.Day))
+            @foreach (var item in Model.SpendingList.OrderBy(x => x.Day))
             {
                 <tr>
                     <td>
                         @rowIndex
                     </td>
                     <td>
-                        @item.Category
+                        @Html.DisplayCategoryName(item.Category)
                     </td>
                     <td>
                         @item.Day.ToString("yyyy-MM-dd")

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models.ViewModels;
+using WebApplication1.Service;
 
 namespace WebApplication1.Controllers
 {
@@ -15,29 +16,32 @@ namespace WebApplication1.Controllers
             SpendingListViewModels models = new SpendingListViewModels
             {
                 spending = new SpendingViewModels(),
-                SpendingList = new List<SpendingViewModels>()
+                SpendingList = AccountBookService.GetAccountBookList()
             };
 
-            SpendingViewModels tempspending = new SpendingViewModels();
-            DateTime dateTimeMin = new DateTime(2019,01,01);
-            Random rnd = new Random();
             List<SelectListItem> mySelectItemList = new List<SelectListItem>();
             mySelectItemList.AddRange(new[]{
                 new SelectListItem() {Text = "支出", Value = "0"},
                 new SelectListItem() {Text = "收支", Value = "1"}
             });
-            string tempCategory = "";
-            ViewData["CategoryList"] = mySelectItemList;
-            for (int i = 1; i <= 100; i++)
-            {
-                tempspending=new SpendingViewModels();
-                //tempspending.SM = i;
-                tempCategory = rnd.Next(2).ToString();
-                tempspending.Category= mySelectItemList.Where(x=>x.Value== tempCategory).SingleOrDefault().Text ;
-                tempspending.Day= dateTimeMin.AddDays(rnd.Next(365));
-                tempspending.Amount = rnd.Next(2000);
-                models.SpendingList.Add(tempspending);
-            }
+            //取得資料
+
+            //SpendingViewModels tempspending = new SpendingViewModels();
+            //DateTime dateTimeMin = new DateTime(2019,01,01);
+            //Random rnd = new Random();
+
+            //string tempCategory = "";
+            //ViewData["CategoryList"] = mySelectItemList;
+            //for (int i = 1; i <= 100; i++)
+            //{
+            //    tempspending=new SpendingViewModels();
+            //    //tempspending.SM = i;
+            //    temp666 = rnd.Next(2).ToString();
+            //    tempspending.Category= mySelectItemList.Where(x=>x.Value== tempCategory).SingleOrDefault().Text ;
+            //    tempspending.Day= dateTimeMin.AddDays(rnd.Next(365));
+            //    tempspending.Amount = rnd.Next(2000);
+            //    models.SpendingList.Add(tempspending);
+            //}
             return View(models);
         }
 
